@@ -1,4 +1,3 @@
-```
 # Step 1: Install Prerequisites
 
 1. **Install Docker Desktop for Windows**  
@@ -159,4 +158,37 @@ The request should be denied with a message:
 
 > Error from server: admission webhook "validation.gatekeeper.sh" denied the request: Containers must set readOnlyRootFilesystem to true
 
+# Step 5: Debug and Monitor
+
+## Check Gatekeeper Logs:
+
+View the logs of the Gatekeeper controller:  
+`kubectl logs -n gatekeeper-system -l control-plane=controller-manager`
+
+## Check Constraint Violations:
+
+Verify which resources violate your constraints:  
+`kubectl get k8sreadonlyrootfilesystem`
+
+# Step 6: Cleanup
+
+To clean up the resources after testing:
+
+## Delete the pod and constraints:
+
+- `kubectl delete -f test-pod.yaml`
+- `kubectl delete -f constraint.yaml`
+- `kubectl delete -f constraint-template.yaml`
+
+## Uninstall Gatekeeper:
+
+**Helm:**  
+`helm uninstall gatekeeper -n gatekeeper-system`
+
+**YAML:**  
+`kubectl delete -f https://raw.githubusercontent.com/open-policy-agent/gatekeeper/release-3.10/deploy/gatekeeper.yaml`
+
+## (Optional) Stop Minikube if used:
+
+`minikube stop`
 ```
