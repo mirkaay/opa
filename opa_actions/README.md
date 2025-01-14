@@ -1,4 +1,5 @@
 # Explanation:
+GitHub Actions file must be stored under .github/workflows/terraform.yml in your repository
 
 - **Checkout Code:** Retrieves your repository code.
 - **Set up Terraform:** Installs the specified Terraform version.
