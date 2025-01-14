@@ -1,1 +1,1 @@
-# opa
+# Open Policy Agent (OPA) - Basic exercises
